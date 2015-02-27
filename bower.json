@@ -1,0 +1,17 @@
+{
+  "name": "adapt-contrib-iframe",
+  "version": "0.0.2",
+  "homepage": "https://github.com/darylhedley/adapt-contrib-iframe",
+  "authors": [
+    "Stuart O'Hare <develop@stuartohare.com>"
+  ],
+  "displayName" : "Text",
+  "component" : "text",
+  "description": "A simple core contributed text component",
+  "main": "/js/adapt-contrib-iframe.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-component"
+  ],
+  "license": "GPLv3"
+}
