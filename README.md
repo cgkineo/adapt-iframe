@@ -15,7 +15,7 @@ This component can also be installed by adding the component to the adapt.json f
 
 ##Usage
 
-This is a very simple component with just title and body text elements.
+See settings
 
 ##Settings overview
 
