@@ -42,11 +42,18 @@ The `displayTitle` and `body` settings can be left blank. Although the blank com
 ####src
 The url of the iframe contents
 
-####selector
+####iframeWidth
 
-####width
+Specify the native width of the iframe - this is used (along with height) to make the iframe responsive
 
-####height
+####iframeHeight
+
+Specify the native height of the iframe - this is used (along with width) to make the iframe responsive
+
+####dimensionDelegateSelector
+
+If the dimensions of the iframe should be delegated to a child element of the iframe use this attribute to select which child element this is.
+
 
 ##Limitations
 

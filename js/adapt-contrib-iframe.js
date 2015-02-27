@@ -5,32 +5,27 @@
 define(function(require) {
 
     var ComponentView = require('coreViews/componentView');
+    var AdaptView = require('coreViews/adaptView');
     var Adapt = require('coreJS/adapt');
 
-    var IFrameComponent = ComponentView.extend({
-
-        preRender: function() {
-
-            this.model.set('_isVisible', false);
-            this.listenTo(Adapt, 'device:resize', _.bind(this.onResize, this));                         
-        },
+    var iFrameComponent = ComponentView.extend({
 
         postRender: function() {                                
-            this.$('iframe').on('load', _.bind(this.onIframeLoaded, this));            
+            this.$('iframe').on('load', _.bind(this.onIframeLoaded, this));
+            this.listenTo(Adapt, 'device:resize', _.bind(this.onResize, this));             
         },
 
         onIframeLoaded : function(){            
             
             this.iframeContents = this.$('iframe').contents();
 
-            if(this.model.get('selector')){                
-                var targets = this.iframeContents.find(this.model.get('selector'));
-                this.dimensionTarget = $(targets[0]);
+            var delegateSelector = this.model.get('dimensionDelegateSelector')
+
+            if(delegateSelector){                                
+                this.$dimensionDelgate = $(this.iframeContents.find(delegateSelector));
             }            
             this.onResize();
 
-            
-            this.model.set('_isVisible', true);
             this.setReadyStatus();  
         },
 
@@ -38,45 +33,54 @@ define(function(require) {
             
             var width, height = 0;            
 
-            if(this.dimensionTarget){
+            if(this.$dimensionDelgate){
 
-                width = this.dimensionTarget.width();
-                height = this.dimensionTarget.height();
+                width = this.$dimensionDelgate.width();
+                height = this.$dimensionDelgate.height();
             }
-            if(width === 0 && height === 0){
-                width = this.model.get('width');
-                height = this.model.get('height');                
+            else {
+                width = this.model.get('initialWidth');
+                height = this.model.get('initialHeight');                
             }            
 
-            return  width && height ? height/width : 0.56;                        
+            return width && height ? height/width : 0.56;                        
         },
 
 
         width : function(){
-            return this.$el.width();
+            return this.$('.iframe-container').width();
         },
 
         height : function(){
-            return this.$el.width() * this.aspectRatio();           
+            return this.width() * this.aspectRatio();           
+        },
+
+        dimensions : function(){
+
+            return {
+                width:this.width(),
+                height:this.height()                
+            };
         },
 
         onResize : function(){    
 
             if(!this.iframeContents) return;
-      
-            this.$('.iframe-container').height(this.height());
 
-            if(this.dimensionTarget){                
-                this.dimensionTarget.css({
-                    width:this.width(),
-                    height:this.height(),
-                });
-            }
+            var dimensions = this.dimensions();    
+            this.$('iframe').css(dimensions);
+            
+            if(this.$dimensionDelgate) this.$dimensionDelgate.css(dimensions);            
+        },
+
+        remove : function(){            
+            this.$delegateSelector = null;
+            AdaptView.prototype.remove.call(this);
         }
     });
 
-    Adapt.register('iframe', IFrameComponent);
+    Adapt.register('iframe', iFrameComponent);
 
-    return IFrameComponent;
+    return iFrameComponent;
 
 });
