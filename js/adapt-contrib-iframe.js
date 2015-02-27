@@ -23,6 +23,8 @@ define(function(require) {
 
             if(delegateSelector){                                
                 this.$dimensionDelgate = $(this.iframeContents.find(delegateSelector));
+                this.model.set('initialWidth', this.$dimensionDelgate.width());
+                this.model.set('initialHeight', this.$dimensionDelgate.height());
             }            
             this.onResize();
 
@@ -30,18 +32,9 @@ define(function(require) {
         },
 
         aspectRatio : function(){
-            
-            var width, height = 0;            
-
-            if(this.$dimensionDelgate){
-
-                width = this.$dimensionDelgate.width();
-                height = this.$dimensionDelgate.height();
-            }
-            else {
-                width = this.model.get('initialWidth');
-                height = this.model.get('initialHeight');                
-            }            
+                                    
+            var width = this.model.get('initialWidth');
+            var height = this.model.get('initialHeight');                                     
 
             return width && height ? height/width : 0.56;                        
         },
@@ -67,10 +60,10 @@ define(function(require) {
 
             if(!this.iframeContents) return;
 
-            var dimensions = this.dimensions();    
+            var dimensions = this.dimensions();     
             this.$('iframe').css(dimensions);
-            
-            if(this.$dimensionDelgate) this.$dimensionDelgate.css(dimensions);            
+                        
+            if(this.$dimensionDelgate) this.$dimensionDelgate.css(dimensions);                                    
         },
 
         remove : function(){            
