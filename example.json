@@ -10,7 +10,7 @@
     "body": "",
     "instruction": "",
     "src": "./course/en/animations/landing_page_animation/build/landing_page_animation.html",
-    "selector":"#canvas",
-    "width":916,
-    "height":522
+    "dimensionDelegateSelector":"#canvas",
+    "iframeWidth":916,
+    "iframeHeight":522
 }
