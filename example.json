@@ -1,0 +1,16 @@
+{
+    "_id": "c-55",
+    "_parentId": "b-50",
+    "_type": "component",
+    "_component": "iframe",
+    "_classes": "",
+    "_layout": "full",
+    "title": "iFrame Component Test",
+    "displayTitle": "iFrame Component Test",
+    "body": "",
+    "instruction": "",
+    "src": "./course/en/animations/landing_page_animation/build/landing_page_animation.html",
+    "dimensionDelegateSelector":"#canvas",
+    "iframeWidth":916,
+    "iframeHeight":522
+}

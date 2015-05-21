@@ -1,0 +1,26 @@
+{
+  "name": "adapt-contrib-iframe",
+  "homepage": "https://github.com/darylhedley/adapt-contrib-iframe",
+  "authors": [
+    "Stuart O'Hare <develop@stuartohare.com>"
+  ],
+  "displayName": "Iframe Component",
+  "component": "iframe",
+  "description": "A simple core contributed iframe component",
+  "main": "/js/adapt-contrib-iframe.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-component"
+  ],
+  "license": "GPLv3",
+  "_release": "645a47c1e7",
+  "_resolution": {
+    "type": "branch",
+    "branch": "develop",
+    "commit": "645a47c1e7470a77dfac220fd661107aa45976b5"
+  },
+  "_source": "https://github.com/adaptlearning/adapt-contrib-iframe.git",
+  "_target": "develop",
+  "_originalSource": "adapt-contrib-iframe",
+  "_direct": true
+}
