@@ -1,4 +1,4 @@
-#adapt-contrib-iframe
+#adapt-iframe
 
 An adapt component that loads content into an iframe
 
@@ -7,11 +7,11 @@ An adapt component that loads content into an iframe
 
 First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-
 
-        adapt install adapt-contrib-iframe
+        adapt install adapt-iframe
 
 This component can also be installed by adding the component to the adapt.json file before running `adapt install`:
 
-        "adapt-contrib-iframe": "*"
+        "adapt-iframe": "*"
 
 ##Usage
 
