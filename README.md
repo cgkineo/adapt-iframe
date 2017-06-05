@@ -1,9 +1,9 @@
-#adapt-iframe
+# adapt-iframe
 
 An adapt component that loads content into an iframe
 
 
-##Installation
+## Installation
 
 First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-
 
@@ -13,53 +13,53 @@ This component can also be installed by adding the component to the adapt.json f
 
         "adapt-iframe": "*"
 
-##Usage
+## Usage
 
 See settings
 
-##Settings overview
+## Settings overview
 
 For example JSON format, see the example.json file
 
 
-####_component
+#### _component
 
 This value must be: `iframe`
 
-####_classes
+#### _classes
 
 You can use this setting to add custom classes to your template and LESS file.
 
-####_layout
+#### _layout
 
 This defines the position of the component in the block. Values can be `full`, `left` or `right`. 
 
-####displayTitle and body
+#### displayTitle and body
 
 The `displayTitle` and `body` settings can be left blank. Although the blank component could be used instead: [adapt-contrib-blank](https://github.com/adaptlearning/adapt-contrib-blank)
 
 
-####src
+#### src
 The url of the iframe contents
 
-####iframeWidth
+#### iframeWidth
 
 Specify the native width of the iframe - this is used (along with height) to make the iframe responsive
 
-####iframeHeight
+#### iframeHeight
 
 Specify the native height of the iframe - this is used (along with width) to make the iframe responsive
 
-####dimensionDelegateSelector
+#### dimensionDelegateSelector
 
 If the dimensions of the iframe should be delegated to a child element of the iframe use this attribute to select which child element this is.
 
 
-##Limitations
+## Limitations
 
 To be completed.
 
-##Browser spec
+## Browser spec
 
 This component has been tested to the standard Adapt browser specification.
 
