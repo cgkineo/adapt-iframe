@@ -14,13 +14,13 @@ define([
         onIframeLoaded: function(){
             this.iframeContents = this.$('iframe').contents();
 
-            var delegateSelector = this.model.get('dimensionDelegateSelector')
+            var delegateSelector = this.model.get('_dimensionDelegateSelector');
 
             if(delegateSelector){
                 this.$dimensionDelegate = $(this.iframeContents.find(delegateSelector));
                 this.model.set({
-                    'initialWidth': this.$dimensionDelegate.width(),
-                    'initialHeight': this.$dimensionDelegate.height()
+                    '_initialWidth': this.$dimensionDelegate.width(),
+                    '_initialHeight': this.$dimensionDelegate.height()
                 });
             }
             this.onResize();
@@ -29,8 +29,8 @@ define([
         },
 
         aspectRatio: function(){
-            var width = this.model.get('initialWidth');
-            var height = this.model.get('initialHeight');
+            var width = this.model.get('_initialWidth');
+            var height = this.model.get('_initialHeight');
 
             return width && height ? height/width : 0.56;
         },

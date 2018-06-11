@@ -9,8 +9,7 @@
     "displayTitle": "iFrame Component Test",
     "body": "",
     "instruction": "",
-    "src": "./course/en/animations/landing_page_animation/build/landing_page_animation.html",
-    "dimensionDelegateSelector":"#canvas",
-    "iframeWidth":916,
-    "iframeHeight":522
+    "_src": "./course/en/animations/landing_page_animation/build/landing_page_animation.html",
+    "_initialWidth": 916,
+    "_initialHeight": 522
 }

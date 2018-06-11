@@ -36,24 +36,22 @@ This defines the position of the component in the block. Values can be `full`, `
 
 #### displayTitle and body
 
-The `displayTitle` and `body` settings can be left blank. Although the blank component could be used instead: [adapt-contrib-blank](https://github.com/adaptlearning/adapt-contrib-blank)
+The `displayTitle` and `body` settings can be left blank.
 
-
-#### src
+#### _src
 The url of the iframe contents
 
-#### iframeWidth
-
-Specify the native width of the iframe - this is used (along with height) to make the iframe responsive
-
-#### iframeHeight
-
-Specify the native height of the iframe - this is used (along with width) to make the iframe responsive
-
-#### dimensionDelegateSelector
+#### _dimensionDelegateSelector
 
 If the dimensions of the iframe should be delegated to a child element of the iframe use this attribute to select which child element this is.
 
+#### _initialWidth
+
+Specify the native width of the iframe - this is used (along with height) to make the iframe responsive
+
+#### _initialHeight
+
+Specify the native height of the iframe - this is used (along with width) to make the iframe responsive
 
 ## Limitations
 
