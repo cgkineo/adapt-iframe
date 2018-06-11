@@ -1,79 +1,64 @@
-/*
- * adapt-iframe
- * License - http://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
- */
-define(function(require) {
-
-    var ComponentView = require('coreViews/componentView');
-    var AdaptView = require('coreViews/adaptView');
-    var Adapt = require('coreJS/adapt');
+define([
+    'core/js/adapt',
+    'core/js/views/componentView'
+], function(Adapt, ComponentView) {
 
     var iFrameComponent = ComponentView.extend({
 
-        postRender: function() {                                
-            this.$('iframe').on('load', _.bind(this.onIframeLoaded, this));
-            this.listenTo(Adapt, 'device:resize', _.bind(this.onResize, this));             
+        postRender: function() {
+            this.$('iframe').on('load', this.onIframeLoaded.bind(this));
+
+            this.listenTo(Adapt, 'device:resize', this.onResize);
         },
 
-        onIframeLoaded : function(){            
-            
+        onIframeLoaded : function(){
             this.iframeContents = this.$('iframe').contents();
 
             var delegateSelector = this.model.get('dimensionDelegateSelector')
 
-            if(delegateSelector){                                
-                this.$dimensionDelgate = $(this.iframeContents.find(delegateSelector));
-                this.model.set('initialWidth', this.$dimensionDelgate.width());
-                this.model.set('initialHeight', this.$dimensionDelgate.height());
-            }            
+            if(delegateSelector){
+                this.$dimensionDelegate = $(this.iframeContents.find(delegateSelector));
+                this.model.set({
+                    'initialWidth': this.$dimensionDelegate.width(),
+                    'initialHeight': this.$dimensionDelegate.height()
+                });
+            }
             this.onResize();
 
-            this.setReadyStatus();  
+            this.setReadyStatus();
         },
 
         aspectRatio : function(){
-                                    
             var width = this.model.get('initialWidth');
-            var height = this.model.get('initialHeight');                                     
+            var height = this.model.get('initialHeight');
 
-            return width && height ? height/width : 0.56;                        
+            return width && height ? height/width : 0.56;
         },
-
 
         width : function(){
             return this.$('.iframe-container').width();
         },
 
-        height : function(){
-            return this.width() * this.aspectRatio();           
+        height: function(){
+            return this.width() * this.aspectRatio();
         },
 
-        dimensions : function(){
-
+        dimensions: function(){
             return {
-                width:this.width(),
-                height:this.height()                
+                width: this.width(),
+                height: this.height()
             };
         },
 
-        onResize : function(){    
+        onResize: function(){
+            if (!this.iframeContents) return;
 
-            if(!this.iframeContents) return;
-
-            var dimensions = this.dimensions();     
+            var dimensions = this.dimensions();
             this.$('iframe').css(dimensions);
-                        
-            if(this.$dimensionDelgate) this.$dimensionDelgate.css(dimensions);                                    
-        },
 
-        remove : function(){            
-            this.$delegateSelector = null;
-            AdaptView.prototype.remove.call(this);
+            if (this.$dimensionDelegate) this.$dimensionDelegate.css(dimensions);
         }
     });
 
-    Adapt.register('iframe', iFrameComponent);
-
-    return iFrameComponent;
-
+    return Adapt.register('iframe', iFrameComponent);
 });
