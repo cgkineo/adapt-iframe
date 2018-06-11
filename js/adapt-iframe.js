@@ -11,7 +11,7 @@ define([
             this.listenTo(Adapt, 'device:resize', this.onResize);
         },
 
-        onIframeLoaded : function(){
+        onIframeLoaded: function(){
             this.iframeContents = this.$('iframe').contents();
 
             var delegateSelector = this.model.get('dimensionDelegateSelector')
@@ -28,14 +28,14 @@ define([
             this.setReadyStatus();
         },
 
-        aspectRatio : function(){
+        aspectRatio: function(){
             var width = this.model.get('initialWidth');
             var height = this.model.get('initialHeight');
 
             return width && height ? height/width : 0.56;
         },
 
-        width : function(){
+        width: function(){
             return this.$('.iframe-container').width();
         },
 
