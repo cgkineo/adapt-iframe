@@ -11,6 +11,19 @@
       "default": "both",
       "editorOnly": true
     },
+    "_setCompletionOn": {
+      "type": "string",
+      "default": "inview",
+      "title": "Set completion on",
+      "inputType": {
+        "type": "Select",
+        "options": [
+          "inview",
+          "message"
+        ]
+      },
+      "help": "Set completion based on either having scrolled into view or from the embedded content sending a message via the window.postMessage API"
+    },
     "instruction": {
       "type": "string",
       "required": false,

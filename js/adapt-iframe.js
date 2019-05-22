@@ -6,9 +6,20 @@ define([
     var iFrameComponent = ComponentView.extend({
 
         postRender: function() {
-            this.$('iframe').on('load', this.onIframeLoaded.bind(this));
+            var $iframe = this.$('iframe');
 
+            _.bindAll(this, 'onIframeLoaded', 'onMessage', 'onInview');
+            $iframe.on('load', this.onIframeLoaded);
             this.listenTo(Adapt, 'device:resize', this.onResize);
+
+            switch (this.model.get('_setCompletionOn')) {
+                case 'message':
+                    window.addEventListener('message', this.onMessage);
+                    break;
+                case 'inview':
+                default:
+                    $iframe.on('inview', this.onInview);
+            }
         },
 
         onIframeLoaded: function(){
@@ -57,7 +68,36 @@ define([
             this.$('iframe').css(dimensions);
 
             if (this.$dimensionDelegate) this.$dimensionDelegate.css(dimensions);
+        },
+
+        onMessage: function(event) {
+            if (event.data !== 'complete') return;
+
+            this.setCompletionStatus();
+            window.removeEventListener('message', this.onMessage);
+        },
+
+        onInview: function(event, visible, visiblePartX, visiblePartY) {
+            if (!visible) return;
+
+            switch (visiblePartY) {
+                case 'top':
+                    this.hasSeenTop = true;
+                    break;
+                case 'bottom':
+                    this.hasSeenBottom = true;
+                    break;
+                case 'both':
+                    this.hasSeenTop = true;
+                    this.hasSeenBottom = true;
+            }
+
+            if (!this.hasSeenTop || !this.hasSeenBottom) return;
+
+            this.$('iframe').off('inview', this.onInview);
+            this.setCompletionStatus();
         }
+
     });
 
     return Adapt.register('iframe', iFrameComponent);

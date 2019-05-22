@@ -5,6 +5,7 @@
     "_component": "iframe",
     "_classes": "",
     "_layout": "full",
+    "_setCompletionOn": "inview",
     "title": "iFrame Component Test",
     "displayTitle": "iFrame Component Test",
     "body": "",

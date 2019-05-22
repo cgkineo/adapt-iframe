@@ -38,6 +38,14 @@ This defines the position of the component in the block. Values can be `full`, `
 
 The `displayTitle` and `body` settings can be left blank.
 
+#### _setCompletionOn
+Set completion based on either having scrolled into view, `"inview"`, or from the embedded content sending a message via the [window.postMessage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage), `"message"`.
+
+The completion code trigger to add to the embedded content is:
+```js
+window.parent.postMessage('complete', '*');
+```
+
 #### _src
 The url of the iframe contents
 
