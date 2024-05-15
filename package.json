@@ -5,7 +5,7 @@
     "url": "git://github.com/cgkineo/adapt-iframe"
   },
   "framework": ">=2.0.16",
-  "version": "2.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/cgkineo/adapt-iframe",
   "issues": "https://github.com/cgkineo/adapt-iframe/issues/",
   "displayName": "iframe",
