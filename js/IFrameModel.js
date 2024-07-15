@@ -1,3 +1,3 @@
 import ComponentModel from 'core/js/models/componentModel';
 
-export default class iframeModel extends ComponentModel {}
+export default class IFrameModel extends ComponentModel {}
