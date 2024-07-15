@@ -3,9 +3,13 @@ import ComponentView from 'core/js/views/componentView';
 
 class IFrameView extends ComponentView {
 
-  postRender() {
+  initialize() {
+    super.initialize();
     _.bindAll(this, 'onIFrameLoaded', 'onMessage', 'onInview');
     this.listenTo(Adapt, 'device:resize', this.onResize);
+  }
+
+  postRender() {
     this.setUpIFrame();
     this.setUpCompletionOn();
   }
