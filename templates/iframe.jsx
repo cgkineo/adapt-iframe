@@ -11,7 +11,7 @@ export default function iframe(props) {
       <templates.header {...props} />
       <div className="iframe__container">
         <iframe src={_src} allowFullScreen webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
-    </div>
+      </div>
     </div>
   );
 }
