@@ -60,9 +60,9 @@ Specify the native height of the iframe - this is used (along with width) to mak
 
 TBD
 
----
+----------------------------
 
-**Author / maintainer:** CGKineo<br>
-**Accessibility support:** TBD<br>
-**RTL support:** TBD<br>
+**Author / maintainer:**  Mindtools Kineo<br>
+**Accessibility support:**  TBD<br>
+**RTL support:**  TBD<br>
 **Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, Safari for macOS/iOS/iPadOS, Opera<br>
