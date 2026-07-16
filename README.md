@@ -63,6 +63,6 @@ TBD
 ----------------------------
 
 **Author / maintainer:**  Mindtools Kineo<br>
-**Accessibility support:**  TBD<br>
+**Accessibility support:**  WAI AA<br>
 **RTL support:**  TBD<br>
 **Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, Safari for macOS/iOS/iPadOS, Opera<br>
