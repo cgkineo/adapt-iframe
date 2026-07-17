@@ -2,4 +2,11 @@
     &__container {
         overflow: hidden;
     }
+
+    // Fallback so the iframe fills its container even if it is never sized by
+    // JS (e.g. a missed load event). JS sets an inline width/height on top.
+    iframe {
+        display: block;
+        width: 100%;
+    }
 }
