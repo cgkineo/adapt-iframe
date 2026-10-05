@@ -30,7 +30,8 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
-      "help": "This is the instruction text"
+      "help": "This is the instruction text",
+      "translatable": true
     },
     "_src": {
       "type": "string",
@@ -43,19 +44,19 @@
     },
     "_initialWidth": {
       "type": "number",
-      "required": true,
+      "required": false,
       "title": "Initial width",
-      "default": "",
       "inputType": "Number",
-      "validators": ["number", "required"]
+      "validators": ["number"],
+      "help": "The native width of the iframe contents. Used with the initial height to keep the iframe's aspect ratio as it resizes. If either is left empty, a ratio of 0.56 (16:9) is used"
     },
     "_initialHeight": {
       "type": "number",
-      "required": true,
+      "required": false,
       "title": "Initial height",
-      "default": "",
       "inputType": "Number",
-      "validators": ["number", "required"]
+      "validators": ["number"],
+      "help": "The native height of the iframe contents. Used with the initial width to keep the iframe's aspect ratio as it resizes. If either is left empty, a ratio of 0.56 (16:9) is used"
     },
     "_dimensionDelegateSelector": {
       "type": "string",

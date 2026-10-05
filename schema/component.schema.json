@@ -1,0 +1,71 @@
+{
+  "$anchor": "iframe-component",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$merge": {
+    "source": {
+      "$ref": "component"
+    },
+    "with": {
+      "required": [
+        "_src"
+      ],
+      "properties": {
+        "_supportedLayout": {
+          "type": "string",
+          "title": "Supported layout",
+          "default": "both",
+          "enum": [
+            "full-width",
+            "half-width",
+            "both"
+          ],
+          "_adapt": {
+            "editorOnly": true
+          }
+        },
+        "instruction": {
+          "type": "string",
+          "title": "Instruction",
+          "default": "",
+          "_adapt": {
+            "translatable": true
+          }
+        },
+        "_setCompletionOn": {
+          "type": "string",
+          "title": "Set completion on",
+          "description": "Set completion based on either having scrolled into view or from the embedded content sending a message via the window.postMessage API",
+          "default": "inview",
+          "enum": [
+            "inview",
+            "message"
+          ],
+          "_backboneForms": "Select"
+        },
+        "_src": {
+          "type": "string",
+          "title": "URL",
+          "description": "Path to the page you want to display in the iframe",
+          "default": ""
+        },
+        "_initialWidth": {
+          "type": "number",
+          "title": "Initial width",
+          "description": "The native width of the iframe contents. Used with the initial height to keep the iframe's aspect ratio as it resizes. If either is left empty, a ratio of 0.56 (16:9) is used"
+        },
+        "_initialHeight": {
+          "type": "number",
+          "title": "Initial height",
+          "description": "The native height of the iframe contents. Used with the initial width to keep the iframe's aspect ratio as it resizes. If either is left empty, a ratio of 0.56 (16:9) is used"
+        },
+        "_dimensionDelegateSelector": {
+          "type": "string",
+          "title": "Dimension delegate selector",
+          "description": "If the dimensions of the iframe should be delegated to a child element of the iframe, use this attribute to select which child element this is. Its size then replaces the initial width and height",
+          "default": ""
+        }
+      }
+    }
+  }
+}
