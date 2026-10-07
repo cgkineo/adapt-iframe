@@ -5,7 +5,7 @@ class IFrameView extends ComponentView {
 
   initialize() {
     super.initialize();
-    _.bindAll(this, 'onIFrameLoaded', 'onMessage', 'onInview');
+    _.bindAll(this, 'onIFrameLoaded', 'onMessage', 'onInview', 'onResize');
     this.listenTo(Adapt, 'device:resize', this.onResize);
   }
 
@@ -17,6 +17,19 @@ class IFrameView extends ComponentView {
   setUpIFrame() {
     this.$iframe = this.$('iframe');
     this.$iframe.on('load', this.onIFrameLoaded);
+    // Keep the iframe sized to its container from the outset and on every
+    // container resize, independent of the load event. This fires an initial
+    // measurement immediately, so the iframe is sized even if the load event
+    // is missed (see below).
+    this._resizeObserver = new ResizeObserver(this.onResize);
+    this._resizeObserver.observe(this.$('.iframe__container')[0]);
+    // postRender runs in a deferred task, so for cached, same-origin content
+    // the load event can fire before this handler is attached and be missed.
+    // If the document is already loaded, run the handler now.
+    const iframe = this.$iframe[0];
+    if (iframe?.contentDocument?.readyState === 'complete') {
+      this.onIFrameLoaded();
+    }
   }
 
   setUpCompletionOn() {
@@ -38,18 +51,25 @@ class IFrameView extends ComponentView {
         _initialHeight: this.$dimensionDelegate.height()
       });
     }
+    // Force a re-measure: the aspect ratio and delegate may have just changed
+    // even though the container width has not.
+    this._lastWidth = null;
     this.onResize();
     this.setReadyStatus();
   }
 
   onResize() {
-    if (!this.$IFrameContents) return;
+    if (!this.$iframe) return;
+    const currentWidth = this.$('.iframe__container').width();
+    // Skip no-op measurements. This also stops the ResizeObserver from looping
+    // on the height changes it triggers, as only width drives the dimensions.
+    if (currentWidth === this._lastWidth) return;
+    this._lastWidth = currentWidth;
     const initialWidth = this.model.get('_initialWidth');
     const initialHeight = this.model.get('_initialHeight');
     const initialAspectRatio = initialWidth && initialHeight
       ? initialHeight / initialWidth
       : 0.56;
-    const currentWidth = this.$('.iframe__container').width();
     const dimensions = {
       width: currentWidth,
       height: currentWidth * initialAspectRatio
@@ -82,6 +102,12 @@ class IFrameView extends ComponentView {
     if (!this.hasSeenTop || !this.hasSeenBottom) return;
     this.$iframe.off('inview', this.onInview);
     this.setCompletionStatus();
+  }
+
+  remove() {
+    this._resizeObserver?.disconnect();
+    window.removeEventListener('message', this.onMessage);
+    super.remove();
   }
 }
 
